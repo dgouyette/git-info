@@ -23,12 +23,10 @@ object GitInfo {
       .build()
   }
 
-
   private def lastRevCommitName(git: Git): String = git.log().call().toList match {
     case h :: _ => h.getName
     case Nil => "N/A"
   }
-
 
   private def lastRevCommitAuthorName(git: Git): String = git.log().call().toList match {
     case h :: _ => h.getAuthorIdent.toExternalString
@@ -41,10 +39,9 @@ object GitInfo {
   }
 
   private def lastRevCommitDate(git: Git): String = git.log().call().toList match {
-    case h :: _ => new Date(h.getCommitTime).toString
+    case h :: _ => new Date(h.getCommitTime.toLong * 1000L).toString
     case Nil => "N/A"
   }
-
 
   /**  macros **/
 
@@ -54,7 +51,6 @@ object GitInfo {
     import c.universe._
     c.Expr[String](q""" ${lastRevCommitName(git)} """)
   }
-
 
   def lastRevCommitAuthor(): String = macro lastRevCommitAuthor_impl
   def lastRevCommitAuthor_impl(c: blackbox.Context)(): c.Expr[String] = {
@@ -67,7 +63,7 @@ object GitInfo {
   def currentBranch(): String = macro currentBranch_impl
   def currentBranch_impl(c: blackbox.Context)(): c.Expr[String] = {
     import c.universe._
-    c.Expr[String](q""" ${loadGitRepository(c).getBranch()}""")
+    c.Expr[String](q""" ${loadGitRepository(c).getBranch}""")
   }
 
   def lastRevCommitMessage(): String = macro lastRevCommitMessage_impl
