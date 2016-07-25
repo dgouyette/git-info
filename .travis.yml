@@ -5,5 +5,3 @@ language: scala
    - oraclejdk8
  script:
    - sbt clean test
- after_success:
-   - sbt coveralls

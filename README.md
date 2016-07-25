@@ -1,6 +1,8 @@
 git-info
 ===
 
+[![Build Status](https://travis-ci.org/dgouyette/git-info.svg?branch=master)](https://travis-ci.org/dgouyette/git-info)
+
 A small library (like https://github.com/sbt/sbt-buildinfo) to obtain git informations (hash, commit time, author,...) but at compile time.
 
 This help to illustrate how macros work
