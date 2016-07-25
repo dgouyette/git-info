@@ -12,12 +12,14 @@ Install as dependency
 project/plugins.sbt : 
 
 ```scala
-resolvers += Resolver.bintrayRepo("dgouyette", "maven")
+addSbtPlugin("me.lessis" % "bintray-sbt" % "0.3.0")
 ```
 
-
 build.sbt : 
+
 ```scala
+resolvers += Resolver.bintrayRepo("dgouyette", "maven")
+
 libraryDependencies ++= Seq(
   "org.cestpasdur" %% "git-info" % "0.1.1",
 )
