@@ -25,7 +25,7 @@ libraryDependencies ++= Seq(
 )
 ```
 
-Usage
+Usage (in a playframework webapp)
 ---
 
 
