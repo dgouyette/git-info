@@ -9,11 +9,6 @@ This help to illustrate how macros work
 
 Install as dependency
 ---
-project/plugins.sbt : 
-
-```scala
-addSbtPlugin("me.lessis" % "bintray-sbt" % "0.3.0")
-```
 
 build.sbt : 
 
