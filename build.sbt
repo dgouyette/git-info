@@ -1,6 +1,8 @@
 name := """play-git-info-webapp"""
 
-version := "0.2-SNAPSHOT"
+version := "0.1.1"
+
+organization := "org.cestpasdur"
 
 scalaVersion := "2.11.8"
 

@@ -9,9 +9,17 @@ This help to illustrate how macros work
 
 Install as dependency
 ---
+project/plugins.sbt : 
+
+```scala
+resolvers += Resolver.bintrayRepo("dgouyette", "maven")
+```
+
+
+build.sbt : 
 ```scala
 libraryDependencies ++= Seq(
-  "org.cestpasdur" %% "git-info" % "1.0.0"
+  "org.cestpasdur" %% "git-info" % "0.1.1",
 )
 ```
 
@@ -36,5 +44,20 @@ class VersionController extends Controller {
     )
   }
 
+}
+```
+
+That will display : 
+
+
+```json
+{
+  "lastCommit": {
+    "branch": "master",
+    "message": "add git-info to display last commit info",
+    "author": "Damien GOUYETTE <damien.gouyette@gmail.com> 1469442718 +0200",
+    "hash": "6024dcc98bd563b0ab78c7a663c52ebadbbaf456",
+    "date": "Mon Jul 25 12:32:15 CEST 2016"
+  }
 }
 ```
