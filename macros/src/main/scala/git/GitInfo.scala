@@ -15,7 +15,7 @@ import scala.collection.JavaConversions._
 object GitInfo {
 
 
-  /**  Internal **/
+  /** Internal **/
 
   private def loadGitRepository(c: blackbox.Context): Repository = {
     new FileRepositoryBuilder()
@@ -30,7 +30,7 @@ object GitInfo {
   }
 
   private def lastRevCommitAuthorName(git: Git): String = git.log().call().toList match {
-    case h :: _ => h.getAuthorIdent.toExternalString
+    case h :: _ => s"${h.getAuthorIdent.getName} <${h.getAuthorIdent.getEmailAddress}>"
     case Nil => "N/A"
   }
 
@@ -44,7 +44,7 @@ object GitInfo {
     case Nil => "N/A"
   }
 
-  /**  macros **/
+  /** macro implementation must be public **/
 
   def lastRevCommitName(): String = macro lastRevCommitName_impl
   def lastRevCommitName_impl(c: blackbox.Context)(): c.Expr[String] = {
