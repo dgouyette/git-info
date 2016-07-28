@@ -1,11 +1,9 @@
 package git
 
-import java.time.LocalDate
 import java.util.Date
 
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.lib.Repository
-import org.eclipse.jgit.revwalk.RevCommit
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 
 import scala.language.experimental.macros
@@ -17,7 +15,7 @@ object GitInfo {
 
   /** Internal **/
 
-  private def loadGitRepository(c: blackbox.Context): Repository = {
+  private def loadGitRepositoryfromEnclosingSourcePosition(c: blackbox.Context): Repository = {
     new FileRepositoryBuilder()
       .findGitDir(c.enclosingPosition.source.file.file)
       .setMustExist(true)
@@ -48,14 +46,14 @@ object GitInfo {
 
   def lastRevCommitName(): String = macro lastRevCommitName_impl
   def lastRevCommitName_impl(c: blackbox.Context)(): c.Expr[String] = {
-    val git = Git.wrap(loadGitRepository(c))
+    val git = Git.wrap(loadGitRepositoryfromEnclosingSourcePosition(c))
     import c.universe._
     c.Expr[String](q""" ${lastRevCommitName(git)} """)
   }
 
   def lastRevCommitAuthor(): String = macro lastRevCommitAuthor_impl
   def lastRevCommitAuthor_impl(c: blackbox.Context)(): c.Expr[String] = {
-    val git = Git.wrap(loadGitRepository(c))
+    val git = Git.wrap(loadGitRepositoryfromEnclosingSourcePosition(c))
     import c.universe._
     c.Expr[String](q""" ${lastRevCommitAuthorName(git)} """)
   }
@@ -64,20 +62,20 @@ object GitInfo {
   def currentBranch(): String = macro currentBranch_impl
   def currentBranch_impl(c: blackbox.Context)(): c.Expr[String] = {
     import c.universe._
-    c.Expr[String](q""" ${loadGitRepository(c).getBranch}""")
+    c.Expr[String](q""" ${loadGitRepositoryfromEnclosingSourcePosition(c).getBranch}""")
   }
 
   def lastRevCommitMessage(): String = macro lastRevCommitMessage_impl
   def lastRevCommitMessage_impl(c: blackbox.Context)(): c.Expr[String] = {
     import c.universe._
-    val git = Git.wrap(loadGitRepository(c))
+    val git = Git.wrap(loadGitRepositoryfromEnclosingSourcePosition(c))
     c.Expr[String](q""" ${lastRevCommitMessage(git)} """)
   }
 
   def lastRevCommitTime(): String = macro lastRevCommitTime_impl
   def lastRevCommitTime_impl(c: blackbox.Context)(): c.Expr[String] = {
     import c.universe._
-    val git = Git.wrap(loadGitRepository(c))
+    val git = Git.wrap(loadGitRepositoryfromEnclosingSourcePosition(c))
     c.Expr[String](q""" ${lastRevCommitDate(git)} """)
   }
 
