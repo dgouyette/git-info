@@ -1,10 +1,10 @@
 name := """git-info"""
 
-version := "0.1.1"
+version := "0.2.0"
 
 organization := "org.cestpasdur"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.3"
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 

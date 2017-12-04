@@ -1,10 +1,11 @@
 package controllers
+import javax.inject.Inject
+
 import git.GitInfo
 import play.api.libs.json.Json
-import play.api.mvc.{Action, Controller}
+import play.api.mvc._
 
-class VersionController extends Controller {
-
+class VersionController @Inject()(cc: ControllerComponents)  extends AbstractController(cc) {
 
   def index = Action {
     Ok(
