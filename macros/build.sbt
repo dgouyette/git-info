@@ -1,12 +1,14 @@
 name := """git-info"""
 
-version := "0.2.0"
+version := "0.2.1"
 
 organization := "org.cestpasdur"
 
 scalaVersion := "2.12.3"
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
+
+bintrayOmitLicense := true
 
 publishMavenStyle := true
 

@@ -16,7 +16,7 @@ build.sbt :
 resolvers += Resolver.bintrayRepo("dgouyette", "maven")
 
 libraryDependencies ++= Seq(
-  "org.cestpasdur" %% "git-info" % "0.2.0",
+  "org.cestpasdur" %% "git-info" % "0.2.1",
 )
 ```
 
