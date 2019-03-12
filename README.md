@@ -12,11 +12,13 @@ Install as dependency
 
 build.sbt : 
 
+works for scala 2.12 and 2.13
+
 ```scala
 resolvers += Resolver.bintrayRepo("dgouyette", "maven")
 
 libraryDependencies ++= Seq(
-  "org.cestpasdur" %% "git-info" % "0.2.1",
+  "org.cestpasdur" %% "git-info" % "0.2.2",
 )
 ```
 
