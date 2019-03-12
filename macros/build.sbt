@@ -4,7 +4,11 @@ version := "0.2.1"
 
 organization := "org.cestpasdur"
 
-scalaVersion := "2.12.3"
+
+lazy val scala213 = "2.13.0-M5"
+lazy val scala212 = "2.12.8"
+
+crossScalaVersions := List(scala212, scala213)
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 

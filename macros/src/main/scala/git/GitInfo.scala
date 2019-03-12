@@ -8,7 +8,7 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 
 object GitInfo {
 
@@ -22,22 +22,22 @@ object GitInfo {
       .build()
   }
 
-  private def lastRevCommitName(git: Git): String = git.log().call().toList match {
+  private def lastRevCommitName(git: Git): String = git.log().call().asScala.toList match {
     case h :: _ => h.getName
     case Nil => "N/A"
   }
 
-  private def lastRevCommitAuthorName(git: Git): String = git.log().call().toList match {
+  private def lastRevCommitAuthorName(git: Git): String = git.log().call().asScala.toList match {
     case h :: _ => s"${h.getAuthorIdent.getName} <${h.getAuthorIdent.getEmailAddress}>"
     case Nil => "N/A"
   }
 
-  private def lastRevCommitMessage(git: Git): String = git.log().call().toList match {
+  private def lastRevCommitMessage(git: Git): String = git.log().call().asScala.toList match {
     case h :: _ => h.getFullMessage
     case Nil => "N/A"
   }
 
-  private def lastRevCommitDate(git: Git): String = git.log().call().toList match {
+  private def lastRevCommitDate(git: Git): String = git.log().call().asScala.toList match {
     case h :: _ => new Date(h.getCommitTime.toLong * 1000L).toString
     case Nil => "N/A"
   }
