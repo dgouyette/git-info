@@ -17,7 +17,7 @@ bintrayOmitLicense := true
 lazy val scala213 = "2.13.0-M5"
 lazy val scala212 = "2.12.8"
 
-lazy val supportedScalaVersions = List(scala213)
+lazy val supportedScalaVersions = List(scala213,scala212)
 
 lazy val root = (project in file("."))
   .enablePlugins(PlayScala)
